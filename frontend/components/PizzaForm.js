@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFullName, setSize, toggleTopping, submitPizzaOrder } from '../state/slices/pizzaFormSlice'
 import { pizzaApi } from '../state/pizzaApi'
+import OrderList from './OrderList'
 
 // const initialFormState = { 
 //   fullName: '',
@@ -25,6 +26,7 @@ export default function PizzaForm() {
       toppings: Object.keys(toppings).filter(key => toppings[key]),
     }
     dispatch(submitPizzaOrder(orderData))
+    
   }
 
   return (

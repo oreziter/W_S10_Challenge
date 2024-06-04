@@ -5,6 +5,7 @@ import axios from 'axios'
 export const submitPizzaOrder = createAsyncThunk('pizzaForm/submitPizzaOrder', async (orderData, { rejectWithValue }) => {
   try {
     const response = await axios.post('http://localhost:9009/api/pizza/order', orderData)
+    console.log(response)
     return response.data
   } catch (error) {
     return rejectWithValue(error.response.data)
@@ -20,6 +21,7 @@ const pizzaFormSlice = createSlice({
     status: 'idle',
     error: null
   },
+
   reducers: {
     setFullName: (state, action) => { state.fullName = action.payload },
     setSize: (state, action) => { state.size = action.payload },
@@ -32,6 +34,7 @@ const pizzaFormSlice = createSlice({
       }
     }
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(submitPizzaOrder.pending, (state) => {
