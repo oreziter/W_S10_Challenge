@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOrderHistory, setFilter } from '../state/slices/orderHistorySlice'
 
+
 export default function OrderList() {
   const [filter, setFilter] = useState('All')
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ export default function OrderList() {
           return (
             <li key={order.id}>
               <div>
-                {order.customer} ordered a size {order.size} pizza with {order.toppings ? order.toppings.length : 'no'} toppings.
+                {order.customer} ordered a size {order.size} with {order.toppings ? order.toppings.length : 'no'} toppings.
               </div>
             </li>
           )

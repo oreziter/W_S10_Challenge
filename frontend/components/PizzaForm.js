@@ -29,7 +29,7 @@ export default function PizzaForm() {
       toppings
     }
     dispatch(submitPizzaOrder(orderData))
-    dispatch(fetchOrderHistory()) 
+   
   }
 
   return (
@@ -115,6 +115,7 @@ export default function PizzaForm() {
             type="checkbox"
             checked={toppings.includes('5')}
             onChange={() => dispatch(toggleTopping('5'))}
+
           />
           Ham<br /></label>
       </div>

@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+import { fetchOrderHistory } from './orderHistorySlice'
 
 // Async thunk for submitting a pizza order
-export const submitPizzaOrder = createAsyncThunk('pizzaForm/submitPizzaOrder', async (orderData, { rejectWithValue }) => {
+export const submitPizzaOrder = createAsyncThunk('pizzaForm/submitPizzaOrder', async (orderData, { rejectWithValue, dispatch }) => {
   try {
-          console.log(orderData)
-    const response = await axios.post('http://localhost:9009/api/pizza/order', orderData)
-   
+          
+    const response = await axios.post('http://localhost:9009/api/pizza/order', orderData) 
+     await dispatch(fetchOrderHistory()) 
+     
     return response.data
   } catch (error) {
     return rejectWithValue(error.response.data)
