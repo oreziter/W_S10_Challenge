@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOrderHistory } from '../state/slices/orderHistorySlice'
+import { fetchOrderHistory, setFilter } from '../state/slices/orderHistorySlice'
 
 export default function OrderList() {
   const [filter, setFilter] = useState('All')
   const dispatch = useDispatch()
   
-
   // Fetch order history on component mount
   useEffect(() => {
     dispatch(fetchOrderHistory())
@@ -37,7 +36,7 @@ export default function OrderList() {
         {['All', 'S', 'M', 'L'].map(size => {
           const className = `button-filter${size === filter ? ' active' : ''}`
           return (
-            <button
+            <button 
               data-testid={`filterBtn${size}`}
               className={className}
               key={size}
@@ -51,3 +50,4 @@ export default function OrderList() {
     </div>
   )
 }
+

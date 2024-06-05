@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+
 // Async thunk for submitting a pizza order
 export const submitPizzaOrder = createAsyncThunk('pizzaForm/submitPizzaOrder', async (orderData, { rejectWithValue }) => {
   try {
+          console.log(orderData)
     const response = await axios.post('http://localhost:9009/api/pizza/order', orderData)
-    console.log(response)
+   
     return response.data
   } catch (error) {
     return rejectWithValue(error.response.data)
@@ -46,6 +48,7 @@ const pizzaFormSlice = createSlice({
         state.fullName = ''
         state.size = ''
         state.toppings = []
+      
       })
       .addCase(submitPizzaOrder.rejected, (state, action) => {
         state.status = 'failed'

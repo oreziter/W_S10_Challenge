@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setFullName, setSize, toggleTopping, submitPizzaOrder } from '../state/slices/pizzaFormSlice'
 import { pizzaApi } from '../state/pizzaApi'
 import OrderList from './OrderList'
+import { fetchOrderHistory } from '../state/slices/orderHistorySlice'
 
 // const initialFormState = { 
 //   fullName: '',
@@ -14,19 +15,21 @@ import OrderList from './OrderList'
 //   '5': false,
 // }
 
+
 export default function PizzaForm() {
   const dispatch = useDispatch()
   const { fullName, size, toppings, status, error } = useSelector(state => state.pizzaForm)
 
   const handleSubmit = (e) => {
     e.preventDefault()
+   
     const orderData = {
       fullName,
       size,
-      toppings: Object.keys(toppings).filter(key => toppings[key]),
+      toppings
     }
     dispatch(submitPizzaOrder(orderData))
-    
+    dispatch(fetchOrderHistory()) 
   }
 
   return (

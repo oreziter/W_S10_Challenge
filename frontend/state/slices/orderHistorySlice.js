@@ -11,6 +11,7 @@ const orderHistorySlice = createSlice({
   name: 'orderHistory',
   initialState: {
     orders: [],
+    filter: 'All',
     status: 'idle',
     error: null
   },
@@ -31,4 +32,5 @@ const orderHistorySlice = createSlice({
   }
 })
 
+export const { setFilter } = orderHistorySlice.actions
 export default orderHistorySlice.reducer
